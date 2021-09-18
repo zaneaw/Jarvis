@@ -5,17 +5,14 @@ import pyttsx3
 import pywhatkit
 import random
 import wikipedia
-import webbrowser
+import webbrowser as wb
 import sys
 import os
 import requests
-import pprint
-import json
 
 # From Imports
 from time import sleep
 from datetime import datetime, timedelta
-from bs4 import BeautifulSoup as soup
 from dadjokes import Dadjoke
 from newsapi import NewsApiClient
 
@@ -24,10 +21,7 @@ from weather import weather
 from dotenv import load_dotenv
 load_dotenv()
 
-
-# Voice for the computer
-engine = pyttsx3.init()
-voices = engine.getProperty("voices")
+# Variables
 number_game_instructions = "I'm thinking of a number between 1 and 10. You have 3 chances to guess the correct number. Good luck!"
 
 # For number game, changes to singular 'guess' if 1 guess left
@@ -38,8 +32,11 @@ def guess_guesses(guesses):
         return 'guesses'
 
 # Computer speech
-def engine_talk(text, *args):
-    print(text)
+engine = pyttsx3.init()
+voices = engine.getProperty("voices")
+
+def engine_talk(text):
+    print(text, flush=True)
     engine.say(text)
     engine.runAndWait()
 
@@ -79,19 +76,19 @@ def jarvis(command):
 
     # Returns the current time
     elif 'time' in command:
-        time = datetime.datetime.now().strftime('%I:%M %p')
+        time = datetime.now().strftime('%I:%M %p')
         time = time.replace(':', ' ')
         if time == '12 00 AM':
             engine_talk("It's currently midnight")
         elif time == '12 00 PM':
             engine_talk("It's currently noon")
-        else:
-            if time.startswith('0'):
-                time = time.replace('0', '')
-            engine_talk('The current time is ' + time)
+        elif time.startswith('0'):
+            time = time.replace('0', '')
+        engine_talk('The current time is ' + time)
 
     # Returns a wiki page and reads the first 2 sentences
-    elif 'who' in command:
+    elif 'who is' in command or 'what is' in command:
+        engine_talk(f"{command}? Just a moment")
         info = wikipedia.summary(command, 2)
         engine_talk(info)
 
@@ -111,7 +108,7 @@ def jarvis(command):
         else:
             print('Got it boss, opening Reddit...')
         winsound.Beep(200, 500)
-        webbrowser.open(url)
+        wb.open(url)
 
     # Opens a webpage in users default browser
     elif 'open' in command:
@@ -122,7 +119,7 @@ def jarvis(command):
             url += '.com'
         print(f"Opening... {url}")
         winsound.Beep(200, 500)
-        webbrowser.open(url)
+        wb.open(url)
 
     # Returns weather in specified city or asks for
     # user to specify city

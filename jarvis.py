@@ -36,11 +36,7 @@ engine = pyttsx3.init()
 voices = engine.getProperty("voices")
 
 def engine_talk(text):
-<<<<<<< HEAD
-    print(text, flush=True)
-=======
     print(text)
->>>>>>> 59ae6a195db5cf30218bea816cf3ef90eed228e8
     engine.say(text)
     engine.runAndWait()
 

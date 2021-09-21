@@ -53,7 +53,7 @@ def jarvis(command):
     if 'jarvis' in command:
         command = command.replace('jarvis', '')
     else:
-        print("Didn't hear Jarvis, try again")
+        print("Didn't hear 'Jarvis', try again")
         user_commands()
 
     # If 'for me' is heard, replace with 'for you'
@@ -142,7 +142,7 @@ def jarvis(command):
         headline_num = 1
 
         top_headlines = newsapi.get_top_headlines(language='en',
-                                                page_size=10,
+                                                page_size=5,
                                                 sources='the-wall-street-journal,'
                                                         'business-insider, buzzfeed,'
                                                         'crypto-coins-news, engadget,' 
@@ -237,7 +237,6 @@ def num_game(guesses_remaining, number_to_guess):
 
             # still playing, not out of guesses yet
             else:
-                print(f"Number to guess: {number_to_guess}")
                 print("Listening for guess...")
                 audio = r.listen(source)
 

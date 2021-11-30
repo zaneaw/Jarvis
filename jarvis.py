@@ -47,7 +47,7 @@ def jarvis(command):
     if 'stop listening' in command:
         print('Yes sir!')
         winsound.Beep(200, 500)
-        sys.exit()
+        sys.exit() 
 
     # If 'jarvis' isn't heard, program will not respond
     if 'jarvis' in command:

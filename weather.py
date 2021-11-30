@@ -15,4 +15,4 @@ def weather(city):
         z = x['weather']
         curr_temp = y['temp']
         curr_humidity = y['humidity']
-        return(f"The current temperature is {int(curr_temp)} fahrenheit and the humidity is {curr_humidity} percent.")
+        return(f"The current temperature is {int(curr_temp)} degrees fahrenheit with a humidity of {curr_humidity} percent.")

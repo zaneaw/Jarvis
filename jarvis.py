@@ -124,7 +124,12 @@ def jarvis(command):
     # Returns weather in specified city or asks for
     # user to specify city
     elif 'weather' in command:
-        if ' in ' in command:
+        if ' in the ' in command:
+            x = command.split(' in the ')
+            city = x[1]
+            print(city)
+            engine_talk(weather(city))
+        elif ' in ' in command:
             x = command.split(' in ')
             city = x[1]
             print(city)
